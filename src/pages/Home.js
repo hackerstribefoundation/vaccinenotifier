@@ -13,19 +13,6 @@ import Container from '@material-ui/core/Container';
 import {IconButton, Snackbar, withStyles} from "@material-ui/core";
 import {CloseRounded, LockOutlined} from "@material-ui/icons";
 
-function Copyright() {
-    return (
-        <Typography variant="body2" color="textSecondary" align="center">
-            {'Copyright © '}
-            <Link color="inherit" href="https://hackerstribe.com/">
-                Hackerstribe
-            </Link>{' '}
-            {new Date().getFullYear()}
-            {'.'}
-        </Typography>
-    );
-}
-
 const useStyles =(theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -197,10 +184,6 @@ class Home extends Component{
                         </Button>
                     </form>
                 </div>
-                <Box mt={5}>
-                    <Copyright />
-                </Box>
-
 
                 <Snackbar
                     anchorOrigin={{
