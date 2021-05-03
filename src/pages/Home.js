@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
@@ -22,6 +19,13 @@ function Copyright() {
             </Link>{' '}
         </Typography>
     );
+}
+
+function getInputValue(){
+    // Selecting the input element and get its value 
+    var var_emailID = document.getElementById("id_email").value;
+    var var_age = document.getElementById("id_age").value;
+    var var_pinCode = document.getElementById("").value;
 }
 
 const useStyles = (theme) => ({
@@ -63,9 +67,7 @@ class Home extends Component {
             for (iter; iter <= pincodeCounter; iter++) {
                 pincodeArray.push(iter)
             }
-
             return pincodeArray
-
         }
 
         const onSnackBarHandleClose = () => {
@@ -110,7 +112,7 @@ class Home extends Component {
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    id="email"
+                                    id="id_email"
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
@@ -122,7 +124,7 @@ class Home extends Component {
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    id="age"
+                                    id="id_age"
                                     label="Age"
                                     name="age"
                                     autoComplete="age"
@@ -159,6 +161,7 @@ class Home extends Component {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onclick="getInputValue();
                         >
                             Register
                         </Button>
