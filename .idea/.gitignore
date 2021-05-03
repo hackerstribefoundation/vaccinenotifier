@@ -1,8 +1,13 @@
+# dependencies
+/node_modules
+
 # Default ignored files
 /shelf/
 /workspace.xml
+
 # Datasource local storage ignored files
-/../../../../../../../:\Code\Node\React\hackerstribe_vaccinenotifier\vaccinenotifier\.idea/dataSources/
+\.idea\*
 /dataSources.local.xml
+
 # Editor-based HTTP Client requests
 /httpRequests/
