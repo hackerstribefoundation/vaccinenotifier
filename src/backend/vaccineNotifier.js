@@ -5,15 +5,15 @@ const cron = require('node-cron');
 const axios = require('axios');
 const notifier = require('./notifier');
 
-const EMAIL = process.env.EMAIL
-const BCC_EMAIL = process.env.BCC_EMAIL
-const PINCODE = process.env.PINCODE
-const AGE = process.env.AGE
+const EMAIL = "appcowinnotifier@gmail.com"
+const BCC_EMAIL = "rishabhbangaa@gmail.com"
+const PINCODE = 201304
+const AGE = 12
 
-async function main() {
+export async function main() {
     try {
         cron.schedule('* * * * *', async () => {
-            await checkAvailability();
+        await checkAvailability();
         });
     } catch (e) {
         console.log('an error occured: ' + JSON.stringify(e, null, 2));
@@ -74,7 +74,3 @@ async function fetchNext10Days() {
     }
     return dates;
 }
-
-
-main()
-    .then(() => { console.log('Vaccine availability checker started.'); });

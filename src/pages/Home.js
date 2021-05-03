@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { IconButton, Snackbar, withStyles } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
-//import main from '../backend/vaccineNotifier';
+import { main } from '../backend/vaccineNotifier';
 
 function Copyright() {
     return (
@@ -45,6 +45,7 @@ const useStyles = (theme) => ({
 class Home extends Component {
 
     state = {
+        testMailId: "appcowinnotifier@gmail.com",
         emailIdState: "",
         ageState: "",
         pinCodeIdCounter: 0,
@@ -52,7 +53,6 @@ class Home extends Component {
             triggered: false,
             message: ""
         }
-
     }
 
     render() {
@@ -98,10 +98,38 @@ class Home extends Component {
                 })
             } else {
                 pincodeCounter++
+                console.log("pincode counter is " + pincodeCounter)
                 this.setState({
                     pinCodeIdCounter: pincodeCounter
                 })
             }
+        }
+
+        const renderPincodeFields = () => {
+            console.log("pincodeCounter" + this.state.pinCodeIdCounter)
+            let returnDiv = []
+            for (let i=0; i<=this.state.pinCodeIdCounter; i++) {
+                returnDiv.push(
+                    <Grid item xs={12}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        name="pincode"
+                                        label="Pincode"
+                                        id="pincode"
+                                        key = "pincode"
+                                        value={this.state.getPinCodeIds}
+                                        onChange={e => this.setState({ pincodeCounter: e.target.value })}
+                                    />
+                                </Grid>
+                )
+            }
+            return (
+                <div>
+                    {returnDiv}
+                </div>
+            )
         }
 
         return (
@@ -123,7 +151,11 @@ class Home extends Component {
                                     name="email"
                                     autoComplete="email"
                                     value={this.state.getEmailId}
-                                    onChange={e => this.setState({ email: e.target.value })}
+                                    onChange={e => {
+                                    this.setState({ emailIdState: e.target.value })
+                                    console.log(this.state)
+                                    }
+                                }
                                 />
                             </Grid>
 
@@ -137,22 +169,11 @@ class Home extends Component {
                                     name="age"
                                     autoComplete="age"
                                     value={this.state.getAge}
-                                    onChange={e => this.setState({ age: e.target.value })}
+                                    onChange={e => this.setState({ ageState: e.target.value })}
                                 />
                             </Grid>
 
-                            {getPinCodeIds().map(object=>(
-                                <Grid item xs={12}>
-                                    <TextField
-                                        variant="outlined"
-                                        required
-                                        fullWidth
-                                        name="pincode"
-                                        label="Pincode"
-                                        id={"pincode-"+String(object)}
-                                    />
-                                </Grid>
-                            ))}
+                           {/* {this.renderPincodeFields()} */}
 
                             <Button
                                 fullWidth
@@ -171,7 +192,9 @@ class Home extends Component {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick="this.main()"
+                            onClick={() => {
+                            main().then(() => { console.log('Vaccine availability checker started.'); });
+                            }}
                         >
                             Check for Availability
                         </Button>

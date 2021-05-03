@@ -1,7 +1,7 @@
 {
   "homepage": "https://hackerstribefoundation.github.io/vaccinenotifier/",
   "name": "vaccinenotifier",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",
@@ -11,7 +11,13 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
-    "web-vitals": "^1.0.1"
+    "web-vitals": "^1.0.1",
+    "axios": "^0.21.1",
+    "cron": "^1.8.2",
+    "dotenv": "^8.2.0",
+    "moment": "^2.29.1",
+    "node-cron": "^3.0.0",
+    "pm2": "^4.5.6"
   },
   "scripts": {
     "predeploy": "npm run build",
