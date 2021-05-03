@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/vaccinenotifier/static/css/main.9d5b29c0.chunk.css",
+    "main.js": "/vaccinenotifier/static/js/main.e62eaf11.chunk.js",
+    "main.js.map": "/vaccinenotifier/static/js/main.e62eaf11.chunk.js.map",
+    "runtime-main.js": "/vaccinenotifier/static/js/runtime-main.f4df8cc1.js",
+    "runtime-main.js.map": "/vaccinenotifier/static/js/runtime-main.f4df8cc1.js.map",
+    "static/js/2.4abbb13b.chunk.js": "/vaccinenotifier/static/js/2.4abbb13b.chunk.js",
+    "static/js/2.4abbb13b.chunk.js.map": "/vaccinenotifier/static/js/2.4abbb13b.chunk.js.map",
+    "static/js/3.8dd73ab5.chunk.js": "/vaccinenotifier/static/js/3.8dd73ab5.chunk.js",
+    "static/js/3.8dd73ab5.chunk.js.map": "/vaccinenotifier/static/js/3.8dd73ab5.chunk.js.map",
+    "index.html": "/vaccinenotifier/index.html",
+    "static/css/main.9d5b29c0.chunk.css.map": "/vaccinenotifier/static/css/main.9d5b29c0.chunk.css.map",
+    "static/js/2.4abbb13b.chunk.js.LICENSE.txt": "/vaccinenotifier/static/js/2.4abbb13b.chunk.js.LICENSE.txt",
+    "static/media/logo.6ce24c58.svg": "/vaccinenotifier/static/media/logo.6ce24c58.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f4df8cc1.js",
+    "static/js/2.4abbb13b.chunk.js",
+    "static/css/main.9d5b29c0.chunk.css",
+    "static/js/main.e62eaf11.chunk.js"
+  ]
+}
