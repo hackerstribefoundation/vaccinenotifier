@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -7,9 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { IconButton, Snackbar, withStyles } from "@material-ui/core";
-import { CloseRounded } from "@material-ui/icons";
-//import main from '../backend/vaccineNotifier';
+import {IconButton, Snackbar, withStyles} from "@material-ui/core";
+import {CloseRounded} from "@material-ui/icons";
 
 function Copyright() {
     return (
@@ -56,15 +55,7 @@ class Home extends Component {
     }
 
     render() {
-        const { classes } = this.props;
-
-        const getEmailId = (event) => {
-            let emailIdState = parseInt(Object.assign(this.state.emailIdState))
-        }
-
-        const getAge = (event) => {
-            let ageState = parseInt(Object.assign(this.state.ageState))
-        }
+        const {classes} = this.props;
 
         const getPinCodeIds = (event) => {
             let pincodeCounter = parseInt(Object.assign(this.state.pinCodeIdCounter))
@@ -106,7 +97,7 @@ class Home extends Component {
 
         return (
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <div className={classes.paper}>
                     <Typography component="h1" variant="h5">
                         Check for Vaccine Availability
@@ -123,7 +114,7 @@ class Home extends Component {
                                     name="email"
                                     autoComplete="email"
                                     value={this.state.getEmailId}
-                                    onChange={e => this.setState({ email: e.target.value })}
+                                    onChange={e => this.setState({email: e.target.value})}
                                 />
                             </Grid>
 
@@ -137,32 +128,34 @@ class Home extends Component {
                                     name="age"
                                     autoComplete="age"
                                     value={this.state.getAge}
-                                    onChange={e => this.setState({ age: e.target.value })}
+                                    onChange={e => this.setState({age: e.target.value})}
                                 />
                             </Grid>
 
-                            {getPinCodeIds().map(object=>(
-                                <Grid item xs={12}>
+                            {getPinCodeIds().map((object, index) => (
+                                <Grid item xs={12} key={index}>
                                     <TextField
                                         variant="outlined"
                                         required
                                         fullWidth
                                         name="pincode"
                                         label="Pincode"
-                                        id={"pincode-"+String(object)}
+                                        id={"pincode-" + String(object)}
                                     />
                                 </Grid>
                             ))}
 
-                            <Button
-                                fullWidth
-                                variant="contained"
-                                color="secondary"
-                                className={classes.submit}
-                                onClick={pincodeIdIncrementer}
-                            >
-                                Add More Pincodes
-                            </Button>
+                            <Grid item xs={12}>
+                                <Button
+                                    fullWidth
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.submit}
+                                    onClick={pincodeIdIncrementer}
+                                >
+                                    Add More Pincodes
+                                </Button>
+                            </Grid>
 
                         </Grid>
                         <Button
@@ -171,14 +164,13 @@ class Home extends Component {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick="this.main()"
                         >
                             Check for Availability
                         </Button>
                     </form>
                 </div>
                 <Box mt={5}>
-                    <Copyright />
+                    <Copyright/>
                 </Box>
 
                 <Snackbar
@@ -193,7 +185,7 @@ class Home extends Component {
                     action={
                         <React.Fragment>
                             <IconButton size="small" aria-label="close" color="inherit" onClick={onSnackBarHandleClose}>
-                                <CloseRounded fontSize="small" />
+                                <CloseRounded fontSize="small"/>
                             </IconButton>
                         </React.Fragment>
                     }
