@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/vaccinenotifier/static/js/main.8e9993e3.chunk.js",
-    "main.js.map": "/vaccinenotifier/static/js/main.8e9993e3.chunk.js.map",
-    "runtime-main.js": "/vaccinenotifier/static/js/runtime-main.d8f18390.js",
-    "runtime-main.js.map": "/vaccinenotifier/static/js/runtime-main.d8f18390.js.map",
-    "static/js/2.39ec0da3.chunk.js": "/vaccinenotifier/static/js/2.39ec0da3.chunk.js",
-    "static/js/2.39ec0da3.chunk.js.map": "/vaccinenotifier/static/js/2.39ec0da3.chunk.js.map",
-    "static/js/3.6a50e1bb.chunk.js": "/vaccinenotifier/static/js/3.6a50e1bb.chunk.js",
-    "static/js/3.6a50e1bb.chunk.js.map": "/vaccinenotifier/static/js/3.6a50e1bb.chunk.js.map",
+    "main.js": "/vaccinenotifier/static/js/main.ac535570.chunk.js",
+    "main.js.map": "/vaccinenotifier/static/js/main.ac535570.chunk.js.map",
+    "runtime-main.js": "/vaccinenotifier/static/js/runtime-main.e42af259.js",
+    "runtime-main.js.map": "/vaccinenotifier/static/js/runtime-main.e42af259.js.map",
+    "static/js/2.291b90d1.chunk.js": "/vaccinenotifier/static/js/2.291b90d1.chunk.js",
+    "static/js/2.291b90d1.chunk.js.map": "/vaccinenotifier/static/js/2.291b90d1.chunk.js.map",
+    "static/js/3.f8e11c33.chunk.js": "/vaccinenotifier/static/js/3.f8e11c33.chunk.js",
+    "static/js/3.f8e11c33.chunk.js.map": "/vaccinenotifier/static/js/3.f8e11c33.chunk.js.map",
     "index.html": "/vaccinenotifier/index.html",
-    "static/js/2.39ec0da3.chunk.js.LICENSE.txt": "/vaccinenotifier/static/js/2.39ec0da3.chunk.js.LICENSE.txt"
+    "static/js/2.291b90d1.chunk.js.LICENSE.txt": "/vaccinenotifier/static/js/2.291b90d1.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.d8f18390.js",
-    "static/js/2.39ec0da3.chunk.js",
-    "static/js/main.8e9993e3.chunk.js"
+    "static/js/runtime-main.e42af259.js",
+    "static/js/2.291b90d1.chunk.js",
+    "static/js/main.ac535570.chunk.js"
   ]
 }
