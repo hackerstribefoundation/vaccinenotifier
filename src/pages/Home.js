@@ -44,8 +44,16 @@ const useStyles = (theme) => ({
 class Home extends Component {
 
     state = {
-        emailIdState: "",
-        ageState: "",
+        form_details: {
+            email: "",
+            age: "",
+            pincode_0: "",
+            pincode_1: "",
+            pincode_2: "",
+            pincode_3: "",
+            pincode_4: "",
+            pincode_5: ""
+        },
         pinCodeIdCounter: 0,
         notification_msg: {
             triggered: false,
@@ -56,6 +64,19 @@ class Home extends Component {
 
     render() {
         const {classes} = this.props;
+
+        const onInputChange= (event)=>{
+            let form_details = Object.assign({}, this.state.form_details)
+            form_details[event.target.id] = event.target.value
+            this.setState({
+                form_details: form_details
+            })
+        }
+
+        const onSubmitForm= (event)=>{
+            //Need to perform form validation and send to backend server
+            console.log(this.state.form_details)
+        }
 
         const getPinCodeIds = (event) => {
             let pincodeCounter = parseInt(Object.assign(this.state.pinCodeIdCounter))
@@ -103,7 +124,7 @@ class Home extends Component {
                         Check for Vaccine Availability
                     </Typography>
                     <form className={classes.form} noValidate>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <TextField
                                     variant="outlined"
@@ -113,8 +134,9 @@ class Home extends Component {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
+                                    type="email"
                                     value={this.state.getEmailId}
-                                    onChange={e => this.setState({email: e.target.value})}
+                                    onChange={onInputChange}
                                 />
                             </Grid>
 
@@ -128,7 +150,7 @@ class Home extends Component {
                                     name="age"
                                     autoComplete="age"
                                     value={this.state.getAge}
-                                    onChange={e => this.setState({age: e.target.value})}
+                                    onChange={onInputChange}
                                 />
                             </Grid>
 
@@ -139,8 +161,9 @@ class Home extends Component {
                                         required
                                         fullWidth
                                         name="pincode"
-                                        label="Pincode"
-                                        id={"pincode-" + String(object)}
+                                        label={"Pincode-" + String(object+1)}
+                                        id={"pincode_" + String(object)}
+                                        onChange={onInputChange}
                                     />
                                 </Grid>
                             ))}
@@ -159,11 +182,11 @@ class Home extends Component {
 
                         </Grid>
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={onSubmitForm}
                         >
                             Check for Availability
                         </Button>
