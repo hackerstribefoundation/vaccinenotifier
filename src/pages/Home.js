@@ -13,6 +13,19 @@ import Container from '@material-ui/core/Container';
 import {IconButton, Snackbar, withStyles} from "@material-ui/core";
 import {CloseRounded, LockOutlined} from "@material-ui/icons";
 
+function Copyright() {
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <Link color="inherit" href="https://hackerstribe.com/">
+                Hackerstribe
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
+
 const useStyles =(theme) => ({
     paper: {
         marginTop: theme.spacing(8),
@@ -163,9 +176,15 @@ class Home extends Component{
                                 className={classes.submit}
                                 onClick={pincodeIdIncrementer}
                             >
-                                Add More Pincodes
+                                Add Pincodes
                             </Button>
 
+                            <Grid item xs={12}>
+                                <FormControlLabel
+                                    control={<Checkbox value="allowExtraEmails" color="primary" />}
+                                    label="I want to receive updates and notifications via email."
+                                />
+                            </Grid>
                         </Grid>
                         <Button
                             type="submit"
