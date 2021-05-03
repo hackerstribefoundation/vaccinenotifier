@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import { IconButton, Snackbar, withStyles } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
+//import main from '../backend/vaccineNotifier';
 
 function Copyright() {
     return (
@@ -19,13 +20,6 @@ function Copyright() {
             </Link>{' '}
         </Typography>
     );
-}
-
-function getInputValue(){
-    // Selecting the input element and get its value 
-    var var_emailID = document.getElementById("id_email").value;
-    var var_age = document.getElementById("id_age").value;
-    var var_pinCode = document.getElementById("").value;
 }
 
 const useStyles = (theme) => ({
@@ -49,16 +43,28 @@ const useStyles = (theme) => ({
 });
 
 class Home extends Component {
+
     state = {
+        emailIdState: "",
+        ageState: "",
         pinCodeIdCounter: 0,
         notification_msg: {
             triggered: false,
             message: ""
         }
+
     }
 
     render() {
         const { classes } = this.props;
+
+        const getEmailId = (event) => {
+            let emailIdState = parseInt(Object.assign(this.state.emailIdState))
+        }
+
+        const getAge = (event) => {
+            let ageState = parseInt(Object.assign(this.state.ageState))
+        }
 
         const getPinCodeIds = (event) => {
             let pincodeCounter = parseInt(Object.assign(this.state.pinCodeIdCounter))
@@ -103,7 +109,7 @@ class Home extends Component {
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Typography component="h1" variant="h5">
-                        Register for Vaccine Availability
+                        Check for Vaccine Availability
                     </Typography>
                     <form className={classes.form} noValidate>
                         <Grid container spacing={2}>
@@ -112,10 +118,12 @@ class Home extends Component {
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    id="id_email"
+                                    id="email"
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
+                                    value={this.state.getEmailId}
+                                    onChange={e => this.setState({ email: e.target.value })}
                                 />
                             </Grid>
 
@@ -124,10 +132,12 @@ class Home extends Component {
                                     variant="outlined"
                                     required
                                     fullWidth
-                                    id="id_age"
+                                    id="age"
                                     label="Age"
                                     name="age"
                                     autoComplete="age"
+                                    value={this.state.getAge}
+                                    onChange={e => this.setState({ age: e.target.value })}
                                 />
                             </Grid>
 
@@ -161,9 +171,9 @@ class Home extends Component {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onclick="getInputValue();
+                            onClick="this.main()"
                         >
-                            Register
+                            Check for Availability
                         </Button>
                     </form>
                 </div>
