@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -7,9 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import { IconButton, Snackbar, withStyles } from "@material-ui/core";
-import { CloseRounded } from "@material-ui/icons";
-import { main } from '../backend/vaccineNotifier';
+import {IconButton, Snackbar, withStyles} from "@material-ui/core";
+import {CloseRounded} from "@material-ui/icons";
 
 function Copyright() {
     return (
@@ -45,9 +44,16 @@ const useStyles = (theme) => ({
 class Home extends Component {
 
     state = {
-        testMailId: "appcowinnotifier@gmail.com",
-        emailIdState: "",
-        ageState: "",
+        form_details: {
+            email: "",
+            age: "",
+            pincode_0: "",
+            pincode_1: "",
+            pincode_2: "",
+            pincode_3: "",
+            pincode_4: "",
+            pincode_5: ""
+        },
         pinCodeIdCounter: 0,
         notification_msg: {
             triggered: false,
@@ -56,14 +62,19 @@ class Home extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const {classes} = this.props;
 
-        const getEmailId = (event) => {
-            let emailIdState = parseInt(Object.assign(this.state.emailIdState))
+        const onInputChange= (event)=>{
+            let form_details = Object.assign({}, this.state.form_details)
+            form_details[event.target.id] = event.target.value
+            this.setState({
+                form_details: form_details
+            })
         }
 
-        const getAge = (event) => {
-            let ageState = parseInt(Object.assign(this.state.ageState))
+        const onSubmitForm= (event)=>{
+            //Need to perform form validation and send to backend server
+            console.log(this.state.form_details)
         }
 
         const getPinCodeIds = (event) => {
@@ -134,13 +145,13 @@ class Home extends Component {
 
         return (
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <div className={classes.paper}>
                     <Typography component="h1" variant="h5">
                         Check for Vaccine Availability
                     </Typography>
                     <form className={classes.form} noValidate>
-                        <Grid container spacing={2}>
+                        <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <TextField
                                     variant="outlined"
@@ -150,12 +161,9 @@ class Home extends Component {
                                     label="Email Address"
                                     name="email"
                                     autoComplete="email"
+                                    type="email"
                                     value={this.state.getEmailId}
-                                    onChange={e => {
-                                    this.setState({ emailIdState: e.target.value })
-                                    console.log(this.state)
-                                    }
-                                }
+                                    onChange={onInputChange}
                                 />
                             </Grid>
 
@@ -169,39 +177,51 @@ class Home extends Component {
                                     name="age"
                                     autoComplete="age"
                                     value={this.state.getAge}
-                                    onChange={e => this.setState({ ageState: e.target.value })}
+                                    onChange={onInputChange}
                                 />
                             </Grid>
 
-                           {/* {this.renderPincodeFields()} */}
+                            {getPinCodeIds().map((object, index) => (
+                                <Grid item xs={12} key={index}>
+                                    <TextField
+                                        variant="outlined"
+                                        required
+                                        fullWidth
+                                        name="pincode"
+                                        label={"Pincode-" + String(object+1)}
+                                        id={"pincode_" + String(object)}
+                                        onChange={onInputChange}
+                                    />
+                                </Grid>
+                            ))}
 
-                            <Button
-                                fullWidth
-                                variant="contained"
-                                color="secondary"
-                                className={classes.submit}
-                                onClick={pincodeIdIncrementer}
-                            >
-                                Add More Pincodes
-                            </Button>
+                            <Grid item xs={12}>
+                                <Button
+                                    fullWidth
+                                    variant="contained"
+                                    color="secondary"
+                                    className={classes.submit}
+                                    onClick={pincodeIdIncrementer}
+                                >
+                                    Add More Pincodes
+                                </Button>
+                            </Grid>
 
                         </Grid>
                         <Button
-                            type="submit"
                             fullWidth
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={() => {
-                            main().then(() => { console.log('Vaccine availability checker started.'); });
-                            }}
+
+                            onClick={onSubmitForm}
                         >
                             Check for Availability
                         </Button>
                     </form>
                 </div>
                 <Box mt={5}>
-                    <Copyright />
+                    <Copyright/>
                 </Box>
 
                 <Snackbar
@@ -216,7 +236,7 @@ class Home extends Component {
                     action={
                         <React.Fragment>
                             <IconButton size="small" aria-label="close" color="inherit" onClick={onSnackBarHandleClose}>
-                                <CloseRounded fontSize="small" />
+                                <CloseRounded fontSize="small"/>
                             </IconButton>
                         </React.Fragment>
                     }
