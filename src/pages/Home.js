@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import {IconButton, Snackbar, withStyles} from "@material-ui/core";
 import {CloseRounded} from "@material-ui/icons";
+import MuiAlert from '@material-ui/lab/Alert';
 
 function Copyright() {
     return (
@@ -51,15 +52,17 @@ class Home extends Component {
             pincode_1: "",
             pincode_2: "",
             pincode_3: "",
-            pincode_4: "",
-            pincode_5: ""
+            pincode_4: ""
         },
         pinCodeIdCounter: 0,
         notification_msg: {
             triggered: false,
             message: ""
+        },
+        error_notification_msg: {
+            triggered: false,
+            message: ""
         }
-
     }
 
     render() {
@@ -74,8 +77,114 @@ class Home extends Component {
         }
 
         const onSubmitForm= (event)=>{
-            //Need to perform form validation and send to backend server
-            console.log(this.state.form_details)
+            let form_data= Object.assign({}, this.state.form_details)
+
+            if (!(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(form_data.email)))
+            {
+
+                //console.log("Incorrect Email")
+                this.setState({
+                    form_details: {
+                        email: "",
+                        age: "",
+                        pincode_0: "",
+                        pincode_1: "",
+                        pincode_2: "",
+                        pincode_3: "",
+                        pincode_4: ""
+                    },
+                    error_notification_msg: {
+                        triggered: true,
+                        message: "Error: Incorrect email address"
+                    }
+                })
+
+                return null;
+
+            }
+
+            let age= parseInt(form_data.age)
+            if(isNaN(age)){
+                //console.log("Incorrect Age")
+                this.setState({
+                    form_details: {
+                        email: "",
+                        age: "",
+                        pincode_0: "",
+                        pincode_1: "",
+                        pincode_2: "",
+                        pincode_3: "",
+                        pincode_4: ""
+                    },
+                    error_notification_msg: {
+                        triggered: true,
+                        message: "Error: Incorrect age"
+                    }
+                })
+
+                return null;
+            }else if(age>130 || age<0){
+                this.setState({
+                    form_details: {
+                        email: "",
+                        age: "",
+                        pincode_0: "",
+                        pincode_1: "",
+                        pincode_2: "",
+                        pincode_3: "",
+                        pincode_4: ""
+                    },
+                    error_notification_msg: {
+                        triggered: true,
+                        message: "Error: Value of age should be between 0-130"
+                    }
+                })
+
+                return null;
+            }
+
+            form_data.age= parseInt(form_data.age)
+
+            let iter=0
+            for(iter; iter<=4; iter++){
+                if(form_data["pincode_"+iter]===""){
+                    form_data["pincode_"+iter]=0
+                }else{
+                    let pinNumber= parseInt(form_data["pincode_"+iter])
+                    if(isNaN(pinNumber) || String(pinNumber).length>6){
+                        //console.log("Incorrect Age")
+                        this.setState({
+                            form_details: {
+                                email: "",
+                                age: "",
+                                pincode_0: "",
+                                pincode_1: "",
+                                pincode_2: "",
+                                pincode_3: "",
+                                pincode_4: ""
+                            },
+                            error_notification_msg: {
+                                triggered: true,
+                                message: "Error: Incorrect pincode"
+                            }
+                        })
+
+                        return null;
+                    }else{
+                        form_data["pincode_"+iter]=parseInt(form_data["pincode_"+iter])
+                    }
+                }
+            }
+
+            //Need to send request to backend
+            console.log(form_data)
+            this.setState({
+                notification_msg: {
+                    triggered: true,
+                    message: "Request sent to COWIN, you shall receive a email with details"
+                }
+            })
+
         }
 
         const getPinCodeIds = (event) => {
@@ -91,6 +200,15 @@ class Home extends Component {
         const onSnackBarHandleClose = () => {
             this.setState({
                 notification_msg: {
+                    triggered: false,
+                    message: ""
+                }
+            })
+        }
+
+        const onErrorSnackBarHandleClose = () => {
+            this.setState({
+                error_notification_msg: {
                     triggered: false,
                     message: ""
                 }
@@ -135,7 +253,7 @@ class Home extends Component {
                                     name="email"
                                     autoComplete="email"
                                     type="email"
-                                    value={this.state.getEmailId}
+                                    value={this.state.form_details.email}
                                     onChange={onInputChange}
                                 />
                             </Grid>
@@ -149,7 +267,7 @@ class Home extends Component {
                                     label="Age"
                                     name="age"
                                     autoComplete="age"
-                                    value={this.state.getAge}
+                                    value={this.state.form_details.age}
                                     onChange={onInputChange}
                                 />
                             </Grid>
@@ -163,6 +281,7 @@ class Home extends Component {
                                         name="pincode"
                                         label={"Pincode-" + String(object+1)}
                                         id={"pincode_" + String(object)}
+                                        value={this.state.form_details["pincode_" + String(object)]}
                                         onChange={onInputChange}
                                     />
                                 </Grid>
@@ -213,6 +332,11 @@ class Home extends Component {
                         </React.Fragment>
                     }
                 />
+                <Snackbar open={this.state.error_notification_msg.triggered} autoHideDuration={6000} onClose={onErrorSnackBarHandleClose}>
+                    <MuiAlert elevation={6} variant="filled" severity="error">
+                        {this.state.error_notification_msg.message}
+                    </MuiAlert>
+                </Snackbar>
             </Container>
         );
     }
