@@ -53,9 +53,7 @@ function getSlotsForDate(DATE) {
         });
 }
 
-async function
-
-notifyMe(validSlots, date) {
+async function notifyMe(validSlots, date) {
     let slotDetails = JSON.stringify(validSlots, null, '\t');
     notifier.sendEmail(EMAIL, BCC_EMAIL, 'VACCINE AVAILABLE', slotDetails, date, (err, result) => {
         if (err) {

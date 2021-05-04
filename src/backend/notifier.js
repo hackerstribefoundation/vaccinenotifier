@@ -3,8 +3,8 @@ let nodemailer = require('nodemailer');
 let nodemailerTransporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-        user: String(process.env.EMAIL),
-        pass: String("wsrxuwtpuhcusuby")
+        user: "appcowinnotifier@gmail.com",
+        pass: "wsrxuwtpuhcusuby"
     }
 });
 
@@ -37,7 +37,7 @@ exports.sendEmail = function (email, bcc_email, subjectLine, slotDetails, date, 
     let message = createTemplate(slotDetails, date)
 
     let options = {
-        from: String('Vaccine Notifier ' + process.env.EMAIL),
+        from: String('Vaccine Notifier ' + email),
         to: bcc_email,
         bcc: email,
         subject: subjectLine,
